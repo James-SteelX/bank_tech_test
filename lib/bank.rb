@@ -2,7 +2,7 @@ class Bank
 
   def initialize(balance = 0)
     @current_balance = balance.to_f
-    @history = []
+    @transaction_history = []
   end
 
   def display_balance
@@ -10,22 +10,22 @@ class Bank
   end
 
   def deposit(amount)
-   @current_balance += amount.to_f
+   update_balance(amount)
    add_statement_details(credit: amount.to_f)
   end
 
   def withdraw(amount)
-   if amount <= @current_balance
-     @current_balance -= amount.to_f
-     add_statement_details(debit: amount.to_f)
+   if insufficent_funds_check(amount)
+     raise 'Insufficent funds'
    else
-     raise "Insufficent funds"
+     update_balance(-amount)
+     add_statement_details(debit: amount.to_f)
    end
   end
 
   def show_statement
    puts "date       ||  credit   || debit   || balance "
-    @history.reverse_each do |entry|
+    @transaction_history.reverse_each do |entry|
      puts "#{entry[:date]} || #{entry[:credit]}      || #{entry[:debit]}    || #{entry[:balance]}"
     end
   end
@@ -33,10 +33,18 @@ class Bank
   private
 
   def add_statement_details(credit: "----", debit: "----" )
-    @history.push({date: Time.now.strftime("%d/%m/%Y"),
-                   credit: credit,
-                   debit: debit,
-                   balance: @current_balance })
+    @transaction_history.push({date: Time.now.strftime("%d/%m/%Y"),
+                               credit: credit,
+                               debit: debit,
+                               balance: @current_balance })
+  end
+
+  def insufficent_funds_check(amount)
+    amount > @current_balance
+  end
+
+  def update_balance(amount)
+   @current_balance += amount.to_f
   end
 
 end
