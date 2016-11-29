@@ -12,5 +12,12 @@ class Bank
    @current_balance += amount.to_f
   end
 
+  def withdraw(amount)
+   if amount <= @current_balance
+     @current_balance -= amount.to_f
+   else
+     'Insufficent funds'
+   end
+  end
 
 end
