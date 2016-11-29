@@ -25,7 +25,7 @@ class Bank
 
   def show_statement
    puts "date       ||  credit   || debit   || balance "
-    @history.each do |entry|
+    @history.reverse_each do |entry|
      puts "#{entry[:date]} || #{entry[:credit]}      || #{entry[:debit]}    || #{entry[:balance]}"
     end
   end
