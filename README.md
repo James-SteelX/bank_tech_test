@@ -6,7 +6,8 @@ $ git clone https://github.com/James-SteelX/bank_tech_test.git
 $ cd bank_tech_test
 $ bundle
 $ irb
-$ variable_name = Account.new(optional_starting_balance)
+ :001 > require './lib/account.rb'
+ :002 > variable_name = Account.new(optional_starting_balance)
 ```
 In IRB you have the following commands -
 ```
