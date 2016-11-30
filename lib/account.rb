@@ -4,13 +4,13 @@ require_relative 'statement'
 class Account
 
   def initialize(balance = 0)
-    @current_balance = balance.to_f
-    @transaction_history = TransactionHistory.new
-    @statement = Statement.new
+   @current_balance = balance.to_f
+   @transaction_history = TransactionHistory.new
+   @statement = Statement.new
   end
 
   def display_balance
-    @current_balance
+   @current_balance
   end
 
   def deposit(amount)
