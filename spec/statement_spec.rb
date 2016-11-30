@@ -7,7 +7,7 @@ describe Statement do
 
    describe '#print_statement' do
      it 'takes a list of transactions and returns them formatted' do
-       expect(statement.print_statement(transaction)).to eq [{:date=>"29/11/2016", :credit=>10.0, :debit=>"----", :balance=>10.0}]
+       expect(statement.print_statement(transaction)).to eq [{:date=> todays_date, :credit=>10.0, :debit=>"----", :balance=>10.0}]
      end
    end
 end
